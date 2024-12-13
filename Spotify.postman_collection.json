@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "497549d9-891d-4698-88d2-67bb13e5fa48",
+		"name": "Spotify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36016614",
+		"_collection_link": "https://tek444.postman.co/workspace/Twitter~7b971e0f-f1e7-4fb8-9b96-8c5377ac1af6/collection/36016614-497549d9-891d-4698-88d2-67bb13e5fa48?action=share&source=collection_link&creator=36016614"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var json=pm.response.json();\r",
+									"pm.environment.set(\"user_id\", json.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "BQAZM9Rn_R2jX93ha1lsFYI2aLFzK0Xk0MAmm_5ylgG0ryuTF2SnXlyO8BqCnSh9QXp1rts-7fD8_gZ3g0A9MGfYcgIRs4jWCzTYEw7JVa6zIXCFoA-T8Am0xaFvhzAscXyvvzqWZL0x0Ftne06euM3hNyh_-ulnpsX3mov6oJ9L4snfc2PWUdLwumQiTaptLfNdM3qf9vbuDjbBt05N9-sbRm7nesSuKOcT7gWtBomyL7P7orYEpWIQr9_kXkiN7v_ToAAAadVDtXGrEJzPEg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/me",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PlayList",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json=pm.response.json();\r",
+									"pm.environment.set(\"Playlistid\", json.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "BQAZM9Rn_R2jX93ha1lsFYI2aLFzK0Xk0MAmm_5ylgG0ryuTF2SnXlyO8BqCnSh9QXp1rts-7fD8_gZ3g0A9MGfYcgIRs4jWCzTYEw7JVa6zIXCFoA-T8Am0xaFvhzAscXyvvzqWZL0x0Ftne06euM3hNyh_-ulnpsX3mov6oJ9L4snfc2PWUdLwumQiTaptLfNdM3qf9vbuDjbBt05N9-sbRm7nesSuKOcT7gWtBomyL7P7orYEpWIQr9_kXkiN7v_ToAAAadVDtXGrEJzPEg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Playlist\",\r\n    \"description\": \"New playlist\",\r\n    \"public\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.spotify.com/v1/users/{{user_id}}/playlists",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{{user_id}}",
+								"playlists"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "{{ClienSecret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{ClientID}}",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "playlist-modify-public playlist-modify-private playlist-read-private",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://accounts.spotify.com/api/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://accounts.spotify.com/authorize",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://localhost:2098",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
